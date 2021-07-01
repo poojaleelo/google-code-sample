@@ -14,7 +14,8 @@ class Video:
         # Turn the tags into a tuple here so it's unmodifiable,
         # in case the caller changes the 'video_tags' they passed to us
         self._tags = tuple(video_tags)
-
+        self._playing = False
+        self._pause = False
     @property
     def title(self) -> str:
         """Returns the title of a video."""
@@ -29,3 +30,17 @@ class Video:
     def tags(self) -> Sequence[str]:
         """Returns the list of tags of a video."""
         return self._tags
+
+    @property
+    def playing(self) -> bool:
+        return self._playing
+
+    @property
+    def pause(self) -> bool:
+        return self._pause
+
+    def change_state(self):
+        self._playing = not self._playing
+
+    def change_pause(self):
+        self._pause = not self._pause
